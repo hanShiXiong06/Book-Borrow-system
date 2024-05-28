@@ -2,4 +2,5 @@
 /.vscode
 *.log
 /runtime
+node_modules/
 install.lock
