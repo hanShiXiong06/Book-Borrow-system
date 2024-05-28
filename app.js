@@ -1,20 +1,29 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+// 引入数据库对象
+const db = require("./config/db");
+const User = require("./models/user");
+const Category = require("./models/Category");
+const Book = require("./models/book");
+const Borrow = require("./models/borrow");
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// 同步数据库
+db.sync({ alter: true }).then((err) => {
+  if (err) return;
+  console.log("同步成功");
+});
 
-var app = express();
+const indexRouter = require("./routes/index");
 
-app.use(logger('dev'));
+const app = express();
+
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use("/", indexRouter);
 
 module.exports = app;
