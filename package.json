@@ -3,13 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+<<<<<<< HEAD
     "start": "nodemon ./bin/www"
+=======
+    "start": "node ./bin/www"
+>>>>>>> 28b3d2f2915c289f25c6b6180e168776d1bca6dd
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+<<<<<<< HEAD
     "jsonwebtoken": "^9.0.2",
+=======
+>>>>>>> 28b3d2f2915c289f25c6b6180e168776d1bca6dd
     "morgan": "~1.9.1",
     "mysql2": "^3.9.8",
     "sequelize": "^6.37.3"
