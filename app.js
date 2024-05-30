@@ -10,7 +10,7 @@ const Book = require("./models/book");
 const Borrow = require("./models/borrow");
 
 // 同步数据库
-db.sync({ alter: true }).then((err) => {
+db.sync().then((err) => {
   if (err) return;
   console.log("同步成功");
 });
@@ -25,6 +25,5 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use("/", indexRouter);
-
 
 module.exports = app;
