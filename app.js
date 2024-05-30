@@ -10,7 +10,7 @@ const Book = require("./models/book");
 const Borrow = require("./models/borrow");
 
 // 同步数据库
-db.sync().then((err) => {
+db.sync({ fouce: true }).then((err) => {
   if (err) return;
   console.log("同步成功");
 });
