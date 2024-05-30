@@ -2,8 +2,22 @@ const BorrowAdminService = require("../../services/admin/BorrowAdminService");
 const BorrowAdminController = {
   // findAll
   async findAll(req, res) {
-    const rows = await BorrowAdminService.findAll();
-    res.json(rows);
+    const borrows = await BorrowAdminService.findAll();
+    const result = borrows.map((borrow) => {
+      return {
+        id: borrow.id,
+        bookId: borrow.bookId,
+        userId: borrow.userId,
+        status: borrow.status,
+        createdAt: borrow.createdAt,
+        updatedAt: borrow.updatedAt,
+        username: borrow.User ? borrow.User.username : null,
+        bookTitle: borrow.Book ? borrow.Book.name : null,
+        bookAuthor: borrow.Book ? borrow.Book.author : null,
+      };
+    });
+
+    res.json(result);
   },
   //   // findOne
   //   // update

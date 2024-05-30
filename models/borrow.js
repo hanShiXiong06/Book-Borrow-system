@@ -12,10 +12,18 @@ const Borrow = db.define("Borrow", {
   bookId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    references: {
+      model: Book,
+      key: "id",
+    },
   },
   userId: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    references: {
+      model: User,
+      key: "id",
+    },
   },
   status: {
     // 借阅信息的状态

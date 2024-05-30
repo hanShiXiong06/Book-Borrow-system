@@ -5,10 +5,7 @@ const Book = require("../../models/book");
 const BorrowAdminService = {
   async findAll() {
     return await Borrow.findAll({
-      include: [
-        { model: User, attributes: ["username"] },
-        { model: Book, attributes: ["name", "author"] },
-      ],
+      include: [{ model: User }, { model: Book }],
     });
   },
   async update(id) {
