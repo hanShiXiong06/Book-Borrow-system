@@ -8,7 +8,12 @@ const BooksAdminController = {
     res.json(req.body);
   },
   findAll: async (req, res) => {
-    const rows = await BooksAdminService.findAll();
+    const { page = 1, pageSize = 10 } = req.query;
+    console.log(page, pageSize);
+    const offset = (page - 1) * pageSize;
+    const limit = parseInt(pageSize);
+
+    const rows = await BooksAdminService.findAll({ offset, limit });
     res.json(rows);
   },
   async update(req, res) {

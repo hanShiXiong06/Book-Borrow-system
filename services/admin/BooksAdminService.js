@@ -7,8 +7,12 @@ const BooksAdminService = {
     Book.create(params);
   },
   //   // R
-  async findAll() {
-    return await Book.findAll();
+  async findAll({ limit, offset }) {
+    return await Book.findAndCountAll({
+      // 10 , 1
+      offset,
+      limit,
+    });
   },
   //   // U
   async update({ id, name, author }) {
