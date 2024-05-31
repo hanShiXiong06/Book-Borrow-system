@@ -1,8 +1,9 @@
 const BooksAdminService = require("../../services/admin/BooksAdminService");
 const BooksAdminController = {
   create: (req, res) => {
-    const { cid, name } = req.body;
-
+    console.log(req.file);
+    const file = req.file ? req.file : "";
+    req.body.img = file.path.substr(6);
     BooksAdminService.create(req.body);
     res.json(req.body);
   },

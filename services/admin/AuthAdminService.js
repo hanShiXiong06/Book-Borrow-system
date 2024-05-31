@@ -5,7 +5,7 @@ const AuthAdminService = {
     return await User.create(params);
   },
   query: async (username) => {
-    return await User.findOne({ where: { userId: 2 } });
+    return await User.findOne({ where: { username } });
   },
 };
 

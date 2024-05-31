@@ -21,19 +21,20 @@ const AuthAdminController = {
     // 验证用户名和密码
     // const confirmUsername = "admin";
     // const confirmPassword = "123456";
-    const user = await AuthAdminService.query({ username });
-
-    if (username !== user.username || password !== user.password) {
-      res.json({
-        code: -1,
-        msg: "用户名或密码错误",
-      });
+    const user = await AuthAdminService.query(username);
+    console.log(user.password, user.username, user.role);
+    //  对用户身份进行校验
+    if (user && !(user.role == "admin")) {
+      res.json({ code: -1, msg: "没有权限" });
     }
-    const token = jwt.sign({ username }, secret, { expiresIn });
-    console.log(token);
+    if (user && !(user.password === password)) {
+      res.json({ code: -1, msg: "密码错误" });
+    }
+    const token = jwt.sign({ username, id: user.userId }, secret, {
+      expiresIn,
+    });
+    // console.log(token);
     res.json({ code: 1, msg: "登录成功", token });
   },
-
-  // R
 };
 module.exports = AuthAdminController;

@@ -10,7 +10,7 @@ const Book = require("./models/book");
 const Borrow = require("./models/borrow");
 
 // 同步数据库
-db.sync({ fouce: true }).then((err) => {
+db.sync().then((err) => {
   if (err) return;
   console.log("同步成功");
 });
@@ -23,6 +23,8 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+//  设置静态资源的
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 

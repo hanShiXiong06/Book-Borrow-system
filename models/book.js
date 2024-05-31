@@ -20,6 +20,9 @@ const Book = db.define("Book", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  img: {
+    type: DataTypes.STRING,
+  },
 });
 
 // 关系问题
